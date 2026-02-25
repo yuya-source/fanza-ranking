@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="人気動画作品ランキング。日間・月間・全期間の売れ筋・人気作品をランキング形式でご紹介。">
+  <meta name="robots" content="noindex, nofollow">
+  <title>動画ランキング — 人気作品TOP30</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="./css/style.css">
+
+  <!-- OGP / SNS -->
+  <meta property="og:title" content="動画ランキング — 人気作品TOP30">
+  <meta property="og:description" content="日間・月間・全期間の人気作品TOP30ランキング">
+  <meta property="og:type" content="website">
+</head>
+<body>
+
+  <!-- ==============================
+       年齢確認オーバーレイ
+  ============================== -->
+  <div id="ageGate" class="age-gate" role="dialog" aria-modal="true" aria-labelledby="ageGateTitle">
+    <div class="age-gate-box">
+      <div class="age-gate-icon">🔞</div>
+      <h2 id="ageGateTitle">年齢確認</h2>
+      <p>
+        このサイトはアダルト向けコンテンツを含みます。<br>
+        18歳以上の方のみご入場いただけます。<br>
+        <br>
+        あなたは18歳以上ですか？
+      </p>
+      <div class="age-gate-buttons">
+        <button id="btnConfirm" class="btn-confirm">
+          はい、18歳以上です
+        </button>
+        <button id="btnDeny" class="btn-deny">
+          いいえ、18歳未満です
+        </button>
+      </div>
+      <p class="disclaimer">
+        入場することで、当サイトの
+        <a href="#terms">利用規約</a>・
+        <a href="#privacy">プライバシーポリシー</a>
+        に同意したものとみなされます。
+      </p>
+    </div>
+  </div>
+
+  <!-- ==============================
+       ヘッダー
+  ============================== -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="/" class="site-logo" aria-label="動画ランキング トップ">
+        <div class="logo-mark" aria-hidden="true">🎬</div>
+        <div>
+          <span class="logo-text">動画ランキング</span>
+          <span class="logo-sub">RANKING TOP 30</span>
+        </div>
+      </a>
+
+      <nav class="site-nav" role="navigation" aria-label="メインナビゲーション">
+        <a href="#ranking" class="nav-link">ランキング</a>
+        <a href="https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F&af_id=__AFFILIATE_ID__&ch=toolbar&ch_id=link"
+           target="_blank" rel="noopener sponsored" class="nav-link">
+          公式サイト <span class="nav-badge">外部</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==============================
+       ヒーロー
+  ============================== -->
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Adult Video Official Ranking</p>
+      <h1 id="heroTitle" class="hero-title">
+        今日の<span>人気作品</span><br>ランキング TOP 30
+      </h1>
+      <p class="hero-subtitle">
+        最新売上データをもとに、人気作品をランキング形式でご紹介
+      </p>
+      <div class="update-badge">
+        <span class="update-dot" aria-hidden="true"></span>
+        毎朝8時更新（日本時間） | 最終更新: <span id="updateTime">—</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       上部広告バナー
+  ============================== -->
+  <div class="ad-banner" role="complementary" aria-label="広告">
+    <div class="ad-banner-inner">
+      <!-- ExoClick / TrafficJunky 広告タグをここに挿入 -->
+      <!-- 例: <script async src="https://a.magsrv.com/ad-provider.js"></script> -->
+      <div class="ad-slot">
+        広告スペース (728×90 / レスポンシブ) — ExoClick または アフィリエイトバナーを挿入してください
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================
+       メインコンテンツ
+  ============================== -->
+  <main class="main-content" id="ranking">
+
+    <!-- ランキングヘッダー + タブ -->
+    <div class="ranking-header">
+      <h2 class="section-title">人気作品ランキング</h2>
+
+      <div class="ranking-tabs" role="tablist" aria-label="集計期間選択">
+        <button class="tab-btn active" data-tab="daily" role="tab" aria-selected="true">
+          日間
+        </button>
+        <button class="tab-btn" data-tab="monthly" role="tab" aria-selected="false">
+          月間
+        </button>
+        <button class="tab-btn" data-tab="alltime" role="tab" aria-selected="false">
+          全期間
+        </button>
+      </div>
+    </div>
+
+    <!-- ランキングコンテナ (JSが動的に挿入) -->
+    <div id="rankingContainer" role="tabpanel">
+      <div class="loading-state">
+        <div class="spinner" aria-hidden="true"></div>
+        <p>ランキングを読み込み中...</p>
+      </div>
+    </div>
+
+    <!-- アフィリエイトCTA -->
+    <section class="affiliate-info" aria-label="公式サイト案内">
+      <div class="affiliate-info-inner">
+        <h3>さらに多くの作品を見る</h3>
+        <p>
+          国内最大級のアダルトコンテンツ配信サービス。<br>
+          月額会員なら見放題プランもご利用いただけます。
+        </p>
+        <a href="https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F&af_id=__AFFILIATE_ID__&ch=toolbar&ch_id=banner_3"
+           target="_blank" rel="noopener sponsored" class="site-cta-btn">
+          🎬 公式サイトで作品を探す
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==============================
+       フッター
+  ============================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-top">
+
+        <!-- ブランド -->
+        <div class="footer-brand">
+          <div class="site-logo" style="margin-bottom:12px;">
+            <div class="logo-mark" style="width:28px;height:28px;font-size:14px;" aria-hidden="true">🎬</div>
+            <span class="logo-text" style="color:#fff;">動画ランキング</span>
+          </div>
+          <p>
+            人気動画作品を、日間・月間・全期間の
+            3カテゴリでランキング形式にまとめています。
+            毎朝8時に自動更新。
+          </p>
+        </div>
+
+        <!-- リンク -->
+        <div class="footer-col">
+          <h4>ランキング</h4>
+          <ul>
+            <li><a href="#ranking" onclick="switchTab('daily')">日間ランキング</a></li>
+            <li><a href="#ranking" onclick="switchTab('monthly')">月間ランキング</a></li>
+            <li><a href="#ranking" onclick="switchTab('alltime')">全期間ランキング</a></li>
+            <li><a href="https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F&af_id=__AFFILIATE_ID__"
+                   target="_blank" rel="noopener sponsored">公式サイト</a></li>
+          </ul>
+        </div>
+
+        <!-- 広告・情報 -->
+        <div class="footer-col">
+          <h4>広告掲載について</h4>
+          <p class="footer-ad-note">
+            当サイトでは以下の広告ネットワークを利用しています。
+            広告掲載のお問い合わせはメールにてご連絡ください。
+          </p>
+          <div class="ad-networks">
+            <span class="ad-network-badge">ExoClick</span>
+            <span class="ad-network-badge">TrafficJunky</span>
+            <span class="ad-network-badge">JuicyAds</span>
+            <span class="ad-network-badge">DMM Affiliate</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p id="terms">
+          本サイトは18歳以上の成人向けコンテンツを含みます。
+          18歳未満の方はご利用いただけません。
+        </p>
+        <p>
+          本サイトのリンクにはアフィリエイトリンクが含まれています。
+          商品リンクから購入があった場合、当サイトに手数料が発生することがあります。
+        </p>
+        <p id="privacy">
+          <a href="#">プライバシーポリシー</a> |
+          <a href="#">利用規約</a> |
+          <a href="#">お問い合わせ</a>
+        </p>
+        <p style="margin-top:16px;">
+          &copy; 2026 動画ランキング. All rights reserved.<br>
+          ※ 掲載情報はアフィリエイトAPIより取得しています。
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==============================
+       JavaScript
+  ============================== -->
+  <script src="./js/app.js"></script>
+  <script>
+    // タブ切り替えリンク用ヘルパー
+    function switchTab(tab) {
+      const btn = document.querySelector(`[data-tab="${tab}"]`);
+      if (btn) btn.click();
+    }
+
+    // タブボタンの aria-selected 管理
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.setAttribute('aria-selected', 'false'));
+        btn.setAttribute('aria-selected', 'true');
+      });
+    });
+  </script>
+
+</body>
+</html>
