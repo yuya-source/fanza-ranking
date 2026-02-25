@@ -7,7 +7,7 @@
 cd /d "%~dp0.."
 
 set PYTHON=python
-set GH_REMOTE=https://github.com/yuya-source/fanza-ranking.git
+set GH_REMOTE=https://github.com/hitomi-la-sourse/fanza-ranking.git
 set LOG=%~dp0..\fetch.log
 
 echo [%date% %time%] ===== 自動更新開始 ===== >> "%LOG%"
