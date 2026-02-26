@@ -349,7 +349,7 @@ function renderTop3(items) {
           </div>
         </div>
         <a href="${escAttr(item.url)}" target="_blank" rel="noopener sponsored" class="top3-link">
-          FANZAで詳細を見る →
+          動画を見る →
         </a>
       </article>
     `;
@@ -385,7 +385,7 @@ function renderCard(item, rank) {
         </div>
       </div>
       <a href="${escAttr(item.url)}" target="_blank" rel="noopener sponsored" class="rank-link">
-        FANZAで見る
+        動画を見る
       </a>
     </article>
   `;
