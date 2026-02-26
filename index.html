@@ -91,6 +91,15 @@
         <span class="update-dot" aria-hidden="true"></span>
         毎朝8時更新（日本時間） | 最終更新: <span id="updateTime">—</span>
       </div>
+
+      <!-- 検索バー -->
+      <div class="search-wrap" role="search">
+        <span class="search-icon" aria-hidden="true">🔍</span>
+        <input type="search" id="searchInput" class="search-input"
+               placeholder="タイトル・女優名・メーカーで検索..."
+               aria-label="作品を検索">
+        <button id="searchClear" class="search-clear" aria-label="検索クリア" style="display:none">✕</button>
+      </div>
     </div>
   </section>
 
@@ -99,8 +108,6 @@
   ============================== -->
   <div class="ad-banner" role="complementary" aria-label="広告">
     <div class="ad-banner-inner">
-      <!-- ExoClick / TrafficJunky 広告タグをここに挿入 -->
-      <!-- 例: <script async src="https://a.magsrv.com/ad-provider.js"></script> -->
       <div class="ad-slot">
         広告スペース (728×90 / レスポンシブ) — ExoClick または アフィリエイトバナーを挿入してください
       </div>
@@ -112,20 +119,39 @@
   ============================== -->
   <main class="main-content" id="ranking">
 
-    <!-- ランキングヘッダー + タブ -->
+    <!-- ランキングヘッダー + タブ + ソート -->
     <div class="ranking-header">
       <h2 class="section-title">人気作品ランキング</h2>
 
-      <div class="ranking-tabs" role="tablist" aria-label="集計期間選択">
-        <button class="tab-btn active" data-tab="daily" role="tab" aria-selected="true">
-          日間
-        </button>
-        <button class="tab-btn" data-tab="monthly" role="tab" aria-selected="false">
-          月間
-        </button>
-        <button class="tab-btn" data-tab="alltime" role="tab" aria-selected="false">
-          全期間
-        </button>
+      <div class="ranking-controls">
+        <!-- タブ -->
+        <div class="ranking-tabs" role="tablist" aria-label="集計期間選択">
+          <button class="tab-btn active" data-tab="daily" role="tab" aria-selected="true">
+            日間
+          </button>
+          <button class="tab-btn" data-tab="monthly" role="tab" aria-selected="false">
+            月間
+          </button>
+          <button class="tab-btn" data-tab="alltime" role="tab" aria-selected="false">
+            全期間
+          </button>
+          <button class="tab-btn tab-btn--fav" data-tab="favorites" role="tab" aria-selected="false"
+                  aria-label="お気に入り">
+            ♥ お気に入り
+            <span id="favCount" class="fav-count" style="display:none">0</span>
+          </button>
+        </div>
+
+        <!-- ソート -->
+        <div class="sort-wrap">
+          <label for="sortSelect" class="sort-label">並び替え</label>
+          <select id="sortSelect" class="sort-select" aria-label="並び替え">
+            <option value="rank">ランク順</option>
+            <option value="review">評価順</option>
+            <option value="price_asc">価格安い順</option>
+            <option value="price_desc">価格高い順</option>
+          </select>
+        </div>
       </div>
     </div>
 
@@ -146,7 +172,7 @@
           月額会員なら見放題プランもご利用いただけます。
         </p>
         <a href="https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F&af_id=__AFFILIATE_ID__&ch=toolbar&ch_id=banner_3"
-           target="_blank" rel="noopener sponsored" class="site-cta-btn">
+           target="_blank" rel="noopener sponsored" class="fanza-btn">
           🎬 公式サイトで作品を探す
         </a>
       </div>
@@ -181,6 +207,7 @@
             <li><a href="#ranking" onclick="switchTab('daily')">日間ランキング</a></li>
             <li><a href="#ranking" onclick="switchTab('monthly')">月間ランキング</a></li>
             <li><a href="#ranking" onclick="switchTab('alltime')">全期間ランキング</a></li>
+            <li><a href="#ranking" onclick="switchTab('favorites')">♥ お気に入り</a></li>
             <li><a href="https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F&af_id=__AFFILIATE_ID__"
                    target="_blank" rel="noopener sponsored">公式サイト</a></li>
           </ul>
@@ -219,31 +246,14 @@
         </p>
         <p style="margin-top:16px;">
           &copy; 2026 動画ランキング. All rights reserved.<br>
-          ※ 掲載情報はアフィリエイトAPIより取得しています。
+          ※ 掲載情報はFANZAより取得しています。
         </p>
       </div>
     </div>
   </footer>
 
-  <!-- ==============================
-       JavaScript
-  ============================== -->
+  <!-- JavaScript -->
   <script src="./js/app.js"></script>
-  <script>
-    // タブ切り替えリンク用ヘルパー
-    function switchTab(tab) {
-      const btn = document.querySelector(`[data-tab="${tab}"]`);
-      if (btn) btn.click();
-    }
-
-    // タブボタンの aria-selected 管理
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach(b => b.setAttribute('aria-selected', 'false'));
-        btn.setAttribute('aria-selected', 'true');
-      });
-    });
-  </script>
 
 </body>
 </html>
